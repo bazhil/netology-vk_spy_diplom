@@ -5,7 +5,7 @@ import time
 from pprint import pprint
 
 TOKEN = '5dfd6b0dee902310df772082421968f4c06443abecbc082a8440cb18910a56daca73ac8d04b25154a1128'
-target_uid = '5030613'
+# target_uid = '5030613'
 
 api_version = '5.73'
 BASE_URL = 'https://api.vk.com/method/'
@@ -71,7 +71,6 @@ def get_members(group_id):
     response = requests.get(url, params)
     if response.status_code == 200:
         try:
-            pprint(response.json())
             users_in_group = response.json()['response']['count']
             time.sleep(0.4)
             print('.')
