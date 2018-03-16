@@ -1,14 +1,11 @@
 from urllib.parse import urlencode
 import  requests
 import json
-# pip3 install vk
-# import vk
 import time
 from pprint import pprint
 
 TOKEN = '5dfd6b0dee902310df772082421968f4c06443abecbc082a8440cb18910a56daca73ac8d04b25154a1128'
 target_uid = '5030613'
-#target_uid = 'tim_learey'
 
 api_version = '5.73'
 BASE_URL = 'https://api.vk.com/method/'
@@ -32,11 +29,11 @@ def find_friends(target_uid):
     return friends_id
 
 #получаем список групп пользователя
-def find_groups(group_id):
+def find_groups(target_uid):
     user_groups = {}
     params = {
         'access_token': TOKEN,
-        'group_id': group_id,
+        'user_id': target_uid,
         'v': api_version,
         'extended': 1
     }
@@ -73,7 +70,13 @@ def get_members(group_id):
     url = BASE_URL + 'groups.getMembers'
     response = requests.get(url, params)
     if response.status_code == 200:
-        users_in_group = response.json()['response']['count']
+        try:
+            pprint(response.json())
+            users_in_group = response.json()['response']['count']
+            time.sleep(0.4)
+            print('.')
+        except:
+            pass
     return users_in_group
 
 #анализируем группы и сохраняем результат в файле groups.json
@@ -84,9 +87,7 @@ def end_analyse():
         print('Ошибка: не введен идентификатор')
     friends = find_friends(user_id)
     groups = find_groups(user_id)
-    # pprint(groups)
     unique_groups = group_analyse(friends, groups)
-    pprint(unique_groups)
     for group in unique_groups:
         count = get_members(group)
         group_info.append(dict(name=groups[group], gid=group, members_count=count))
