@@ -94,7 +94,6 @@ def get_members(group_id):
 def end_analyse():
     """
     функция анализирующая группы и сохраняющая результат в файле groups.json
-    :return:
     """
     group_info = []
     user_id = input('Введите id целевого пользователя: ')
