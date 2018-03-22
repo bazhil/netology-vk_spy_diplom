@@ -4,7 +4,8 @@ import json
 import time
 from pprint import pprint
 
-TOKEN = '5dfd6b0dee902310df772082421968f4c06443abecbc082a8440cb18910a56daca73ac8d04b25154a1128'
+# TOKEN = '5dfd6b0dee902310df772082421968f4c06443abecbc082a8440cb18910a56daca73ac8d04b25154a1128'
+TOKEN = '7b23e40ad10e08d3b7a8ec0956f2c57910c455e886b480b7d9fb59859870658c4a0b8fdc4dd494db19099'
 target_uid = '5030613'
 api_version = '5.73'
 BASE_URL = 'https://api.vk.com/method/'
